@@ -17,6 +17,3 @@ ui.link('And many more...', '/documentation').classes('mt-8')
 
 ui.run()
 
-
- git config --global user.email "yousrakrimo@gmail.com"
-  git config --global user.name "yousra"
