@@ -61,7 +61,6 @@ def eclairage_page():
     with ui.row().style('align-items: center; justify-content: center; gap: 40px;'):
         ui.label("Page pour gestion éclairage")
         ui.button('Retour', on_click=lambda : ui.navigate.to(main_page))
-
 ui.navigate.to(main_page, new_tab=False)
 
 ui.run()
