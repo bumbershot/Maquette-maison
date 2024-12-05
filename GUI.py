@@ -41,6 +41,10 @@ def main_page():
             ui.image(r'C:\Users\Asus\Desktop\maquette\eclairage.png')
             with ui.card_section():
                 ui.label('gestion éclairage')
+        with ui.card(align_items = 'stretch').tight().on('click', lambda: ui.navigate.to(auto_page, new_tab=False)):
+            ui.image(r'C:\Users\Asus\Desktop\maquette\auto.png')
+            with ui.card_section():
+                ui.label('jounée type ')
 #arrêt d urgence
     with ui.row().classes('absolute bottom-0 right-0 p-4'):
         ui.button("ARRÊT D'URGENCE",color='red', on_click=lambda: ui.notify('arrêt absolu!'))
@@ -451,7 +455,12 @@ def chambre3ec_page():
         ui.button('Retour', on_click=lambda: ui.navigate.to(etageec_page))
 
 
-
+#page5  journee type 
+@ui.page('/auto') 
+def auto_page():
+    with ui.row().style('align-items: center; justify-content: center; gap: 40px;'):
+        ui.label("Page journée type")
+        ui.button('Retour', on_click=lambda : ui.navigate.to(main_page))
 
 
 
