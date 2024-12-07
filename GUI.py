@@ -1,6 +1,7 @@
 
 from nicegui import ui
 from nicegui.events import ValueChangeEventArguments
+from fct_inter import validate_temperature,validate_time
 # def show(event: ValueChangeEventArguments):
 #     name = type(event.sender).__name__
 #     ui.notify(f'{name}: {event.value}')
@@ -57,32 +58,18 @@ def heure_page():
     with ui.row().style('align-items: center; justify-content: center; gap: 40px;'):
         ui.label("Page pour changer l'heure")
         ui.button('Retour', on_click=lambda : ui.navigate.to(main_page))
-    #inserer heure 
-    def validate_time():
-        try:
-        # Récupération des valeurs des champs
-            HH = int(hour_input.value)
-            MM = int(minute_input.value)
-
-        # Vérification des plages horaires valides
-            if 0 <= HH < 24 and 0 <= MM < 60:
-                result.set_text(f"Heure validée : {HH:02}:{MM:02}")
-            else:
-                result.set_text("Erreur : heure ou minute invalide")
-        except ValueError: # Gestion des entrées non numériques
-            result.set_text("Erreur : entrez uniquement des chiffres")
-
+          
     # Inserer l'heure
     with ui.row():
         hour_input = ui.input(label="HH", placeholder="00", value="00").props('type=number').style("width: 50px;")
         ui.label(":")
         minute_input = ui.input(label="MM", placeholder="00", value="00").props('type=number').style("width: 50px;")
-
-    # Bouton de validation
-    ui.button("Valider l'heure", on_click=validate_time)
-
-    # Zone d'affichage des résultats
+  # Zone d'affichage des résultats
     result = ui.label()
+    # Bouton de validation
+    ui.button("Valider l'heure souhaitée", on_click=lambda: validate_time(hour_input, minute_input, result))
+
+
    
 
 
@@ -92,6 +79,19 @@ def saison_page():
     with ui.row().style('align-items: center; justify-content: center; gap: 40px;'):
         ui.label("Page pour changer la saison")
         ui.button('Retour', on_click=lambda : ui.navigate.to(main_page))
+    # Fonction pour afficher la saison choisie
+    def afficher_saison(e):
+        resultat.set_text(f"Vous avez choisi : {e.value}")
+    with ui.row().style('gap: 20px;'):
+        # Sélecteur de saison
+        ui.label('Choisissez une saison :')
+        saison_selecteur = ui.radio(
+            ['Automne', 'Hiver', 'Printemps', 'Été'], 
+            value='Automne', 
+            on_change=afficher_saison ).props('inline')
+
+    # Zone pour afficher la saison choisie
+    resultat = ui.label(f"Vous avez choisi : {saison_selecteur.value}")
 
 #CHAUFFAGE 
 #page3  GESTION chau
@@ -162,62 +162,188 @@ def RDCch_page():
                 ui.label("modifier le chauffage du bureau")
 
 # les differentes pieces chauffées du RDC
+#garage
 @ui.page('/RDCch/garage')
 def garagech_page():
-    with ui.row().style('align-item: center; justify-content: center; gap: 40px'):
-        ui.label('vous être en train de modifier le chauffage du garage')
+    with ui.column().style('align-item: center; justify-content: center; gap: 40px'):
+        ui.label('vous êtes en train de modifier le chauffage du garage')
         ui.button('Retour', on_click=lambda: ui.navigate.to(RDCch_page))
+                # Zone pour afficher les résultats
+        result = ui.label()
+
+        # Champ de saisie pour la température
+        with ui.row().style('align-items: center; gap: 10px'):
+            temp_input = ui.input(value="0").props("type=number").style("width: 80px;")
+            ui.label("°C") 
+        # Bouton de validation de température
+        ui.button("Valider la température souhaitée", on_click=lambda:validate_temperature(temp_input,result))
+
+#celier
 @ui.page('/RDCch/celier')
 def celierch_page():
-    with ui.row().style('align-item: center; justify-content: center; gap: 40px'):
+    with ui.column().style('align-item: center; justify-content: center; gap: 40px'):
         ui.label('vous être en train de modifier le chauffage du celier')
         ui.button('Retour', on_click=lambda: ui.navigate.to(RDCch_page))
+                # Zone pour afficher les résultats
+        result = ui.label()
+
+        # Champ de saisie pour la température
+        with ui.row().style('align-items: center; gap: 10px'):
+            temp_input = ui.input(value="0").props("type=number").style("width: 80px;")
+            ui.label("°C") 
+        # Bouton de validation de température
+        ui.button("Valider la température souhaitée", on_click=lambda:validate_temperature(temp_input,result))
+
+      
+#SDB
 @ui.page('/RDCch/SDB')
 def SDBch_page():
-    with ui.row().style('align-item: center; justify-content: center; gap: 40px'):
+    with ui.column().style('align-item: center; justify-content: center; gap: 40px'):
         ui.label('vous être en train de modifier le chauffage de la salle de bain')
         ui.button('Retour', on_click=lambda: ui.navigate.to(RDCch_page))
+                # Zone pour afficher les résultats
+        result = ui.label()
+
+        # Champ de saisie pour la température
+        with ui.row().style('align-items: center; gap: 10px'):
+            temp_input = ui.input(value="0").props("type=number").style("width: 80px;")
+            ui.label("°C") 
+        # Bouton de validation de température
+        ui.button("Valider la température souhaitée", on_click=lambda:validate_temperature(temp_input,result))
+
+#HALL SDB      
 @ui.page('/RDCch/SDBHall')
 def SDBHallch_page():
-    with ui.row().style('align-item: center; justify-content: center; gap: 40px'):
+    with ui.column().style('align-item: center; justify-content: center; gap: 40px'):
         ui.label('vous être en train de modifier le chauffage du hall de la salle de bain')
         ui.button('Retour', on_click=lambda: ui.navigate.to(RDCch_page))
+                 # Zone pour afficher les résultats
+        result = ui.label()
+
+        # Champ de saisie pour la température
+        with ui.row().style('align-items: center; gap: 10px'):
+            temp_input = ui.input(value="0").props("type=number").style("width: 80px;")
+            ui.label("°C") 
+        # Bouton de validation de température
+        ui.button("Valider la température souhaitée", on_click=lambda:validate_temperature(temp_input,result))
+
+
+#séjour
 @ui.page('/RDCch/sejour')
 def sejourch_page():
-    with ui.row().style('align-item: center; justify-content: center; gap: 40px'):
+    with ui.column().style('align-item: center; justify-content: center; gap: 40px'):
         ui.label('vous être en train de modifier le chauffage du séjour')
         ui.button('Retour', on_click=lambda: ui.navigate.to(RDCch_page))
+                 # Zone pour afficher les résultats
+        result = ui.label()
+
+        # Champ de saisie pour la température
+        with ui.row().style('align-items: center; gap: 10px'):
+            temp_input = ui.input(value="0").props("type=number").style("width: 80px;")
+            ui.label("°C") 
+        # Bouton de validation de température
+        ui.button("Valider la température souhaitée", on_click=lambda:validate_temperature(temp_input,result))
+
+
+#cuisine
 @ui.page('/RDCch/cuisine')
 def cuisinech_page():
-    with ui.row().style('align-item: center; justify-content: center; gap: 40px'):
+    with ui.column().style('align-item: center; justify-content: center; gap: 40px'):
         ui.label('vous être en train de modifier le chauffage de la cuisine')
         ui.button('Retour', on_click=lambda: ui.navigate.to(RDCch_page))
+                # Zone pour afficher les résultats
+        result = ui.label()
+
+        # Champ de saisie pour la température
+        with ui.row().style('align-items: center; gap: 10px'):
+            temp_input = ui.input(value="0").props("type=number").style("width: 80px;")
+            ui.label("°C") 
+        # Bouton de validation de température
+        ui.button("Valider la température souhaitée", on_click=lambda:validate_temperature(temp_input,result))
+
+
+#chambre 1
 @ui.page('/RDCch/chambre1')
 def chambre1ch_page():
-    with ui.row().style('align-item: center; justify-content: center; gap: 40px'):
+    with ui.column().style('align-item: center; justify-content: center; gap: 40px'):
         ui.label('vous être en train de modifier le chauffage de la chambre 1')
         ui.button('Retour', on_click=lambda: ui.navigate.to(RDCch_page))
+                 # Zone pour afficher les résultats
+        result = ui.label()
+
+        # Champ de saisie pour la température
+        with ui.row().style('align-items: center; gap: 10px'):
+            temp_input = ui.input(value="0").props("type=number").style("width: 80px;")
+            ui.label("°C") 
+        # Bouton de validation de température
+        ui.button("Valider la température souhaitée", on_click=lambda:validate_temperature(temp_input,result))
+
+
+#hall RDC
 @ui.page('/RDCch/hall')
 def Hallch_page():
-    with ui.row().style('align-item: center; justify-content: center; gap: 40px'):
+    with ui.column().style('align-item: center; justify-content: center; gap: 40px'):
         ui.label('vous être en train de modifier le chauffage du Hall')
         ui.button('Retour', on_click=lambda: ui.navigate.to(RDCch_page))
+                 # Zone pour afficher les résultats
+        result = ui.label()
+
+        # Champ de saisie pour la température
+        with ui.row().style('align-items: center; gap: 10px'):
+            temp_input = ui.input(value="0").props("type=number").style("width: 80px;")
+            ui.label("°C") 
+        # Bouton de validation de température
+        ui.button("Valider la température souhaitée", on_click=lambda:validate_temperature(temp_input,result))
+
+
+#bureau
 @ui.page('/RDCch/bureau')
 def bureauch_page():
-    with ui.row().style('align-item: center; justify-content: center; gap: 40px'):
+    with ui.column().style('align-item: center; justify-content: center; gap: 40px'):
         ui.label('vous être en train de modifier le chauffage du bureau')
         ui.button('Retour', on_click=lambda: ui.navigate.to(RDCch_page))
+                # Zone pour afficher les résultats
+        result = ui.label()
+
+        # Champ de saisie pour la température
+        with ui.row().style('align-items: center; gap: 10px'):
+            temp_input = ui.input(value="0").props("type=number").style("width: 80px;")
+            ui.label("°C") 
+        # Bouton de validation de température
+        ui.button("Valider la température souhaitée", on_click=lambda:validate_temperature(temp_input,result))
+
+
+#salon
 @ui.page('/RDCch/salon')
 def salonch_page():
-    with ui.row().style('align-item: center; justify-content: center; gap: 40px'):
+    with ui.column().style('align-item: center; justify-content: center; gap: 40px'):
         ui.label('vous être en train de modifier le chauffage du salon')
         ui.button('Retour', on_click=lambda: ui.navigate.to(RDCch_page))
+                  # Zone pour afficher les résultats
+        result = ui.label()
+
+        # Champ de saisie pour la température
+        with ui.row().style('align-items: center; gap: 10px'):
+            temp_input = ui.input(value="0").props("type=number").style("width: 80px;")
+            ui.label("°C") 
+        # Bouton de validation de température
+        ui.button("Valider la température souhaitée", on_click=lambda:validate_temperature(temp_input,result))
+
+#WC
 @ui.page('/RDCch/wc')
 def WCch_page():
-    with ui.row().style('align-item: center; justify-content: center; gap: 40px'):
+    with ui.column().style('align-item: center; justify-content: center; gap: 40px'):
         ui.label('vous être en train de modifier le chauffage des WC')
         ui.button('Retour', on_click=lambda: ui.navigate.to(RDCch_page))
+                 # Zone pour afficher les résultats
+        result = ui.label()
 
+        # Champ de saisie pour la température
+        with ui.row().style('align-items: center; gap: 10px'):
+            temp_input = ui.input(value="0").props("type=number").style("width: 80px;")
+            ui.label("°C") 
+        # Bouton de validation de température
+        ui.button("Valider la température souhaitée", on_click=lambda:validate_temperature(temp_input,result))
 
 
 #pageintegree chauffage2 
@@ -255,34 +381,94 @@ def etagech_page():
 # les differentes pieces chauffées du premier étage
 @ui.page('/etagech/bureau')
 def bureau2ch_page():
-    with ui.row().style('align-item: center; justify-content: center; gap: 40px'):
+    with ui.column().style('align-item: center; justify-content: center; gap: 40px'):
         ui.label('vous être en train de modifier le chauffage du bureau')
         ui.button('Retour', on_click=lambda: ui.navigate.to(etagech_page))
+                # Zone pour afficher les résultats
+        result = ui.label()
+
+        # Champ de saisie pour la température
+        with ui.row().style('align-items: center; gap: 10px'):
+            temp_input = ui.input(value="0").props("type=number").style("width: 80px;")
+            ui.label("°C") 
+        # Bouton de validation de température
+        ui.button("Valider la température souhaitée", on_click=lambda:validate_temperature(temp_input,result))
+
 @ui.page('/etagech/sas')
 def sasch_page():
-    with ui.row().style('align-item: center; justify-content: center; gap: 40px'):
+    with ui.column().style('align-item: center; justify-content: center; gap: 40px'):
         ui.label('vous être en train de modifier le chauffage du SAS')
         ui.button('Retour', on_click=lambda: ui.navigate.to(etagech_page))
+              # Zone pour afficher les résultats
+        result = ui.label()
+
+        # Champ de saisie pour la température
+        with ui.row().style('align-items: center; gap: 10px'):
+            temp_input = ui.input(value="0").props("type=number").style("width: 80px;")
+            ui.label("°C") 
+        # Bouton de validation de température
+        ui.button("Valider la température souhaitée", on_click=lambda:validate_temperature(temp_input,result))
+
 @ui.page('/etagech/hall')
 def hall2ch_page():
-    with ui.row().style('align-item: center; justify-content: center; gap: 40px'):
+    with ui.column().style('align-item: center; justify-content: center; gap: 40px'):
         ui.label('vous être en train de modifier le chauffage du hall')
         ui.button('Retour', on_click=lambda: ui.navigate.to(etagech_page))
+                # Zone pour afficher les résultats
+        result = ui.label()
+
+        # Champ de saisie pour la température
+        with ui.row().style('align-items: center; gap: 10px'):
+            temp_input = ui.input(value="0").props("type=number").style("width: 80px;")
+            ui.label("°C") 
+        # Bouton de validation de température
+        ui.button("Valider la température souhaitée", on_click=lambda:validate_temperature(temp_input,result))
+
 @ui.page('/etagech/sdb')
 def sdb2ch_page():
-    with ui.row().style('align-item: center; justify-content: center; gap: 40px'):
+    with ui.column().style('align-item: center; justify-content: center; gap: 40px'):
         ui.label('vous être en train de modifier le chauffage du hall de la salle de bain')
         ui.button('Retour', on_click=lambda: ui.navigate.to(etagech_page))
+             # Zone pour afficher les résultats
+        result = ui.label()
+
+        # Champ de saisie pour la température
+        with ui.row().style('align-items: center; gap: 10px'):
+            temp_input = ui.input(value="0").props("type=number").style("width: 80px;")
+            ui.label("°C") 
+        # Bouton de validation de température
+        ui.button("Valider la température souhaitée", on_click=lambda:validate_temperature(temp_input,result))
+
 @ui.page('/etagech/chambre2')
 def chambre2ch_page():
-    with ui.row().style('align-item: center; justify-content: center; gap: 40px'):
+    with ui.column().style('align-item: center; justify-content: center; gap: 40px'):
         ui.label('vous être en train de modifier le chauffage de la chambre 2')
         ui.button('Retour', on_click=lambda: ui.navigate.to(etagech_page))
+                # Zone pour afficher les résultats
+        result = ui.label()
+
+        # Champ de saisie pour la température
+        with ui.row().style('align-items: center; gap: 10px'):
+            temp_input = ui.input(value="0").props("type=number").style("width: 80px;")
+            ui.label("°C") 
+        # Bouton de validation de température
+        ui.button("Valider la température souhaitée", on_click=lambda:validate_temperature(temp_input,result))
+
 @ui.page('/etagech/chambre3')
 def chambre3ch_page():
     with ui.row().style('align-item: center; justify-content: center; gap: 40px'):
         ui.label('vous être en train de modifier le chauffage de la chambre 3')
         ui.button('Retour', on_click=lambda: ui.navigate.to(etagech_page))
+                    # Zone pour afficher les résultats
+        result = ui.label()
+
+        # Champ de saisie pour la température
+        with ui.row().style('align-items: center; gap: 10px'):
+            temp_input = ui.input(value="0").props("type=number").style("width: 80px;")
+            ui.label("°C") 
+        # Bouton de validation de température
+        ui.button("Valider la température souhaitée", on_click=lambda:validate_temperature(temp_input,result))
+
 
 
 #ELCLAIRAGE
