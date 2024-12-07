@@ -44,16 +44,47 @@ def main_page():
         with ui.card(align_items = 'stretch').tight().on('click', lambda: ui.navigate.to(auto_page, new_tab=False)):
             ui.image(r'C:\Users\Asus\Desktop\maquette\auto.png')
             with ui.card_section():
-                ui.label('jounée type ')
+                ui.label('jounée type')
 #arrêt d urgence
     with ui.row().classes('absolute bottom-0 right-0 p-4'):
         ui.button("ARRÊT D'URGENCE",color='red', on_click=lambda: ui.notify('arrêt absolu!'))
+
+
+
 #page1  changement d heure
 @ui.page('/heure') 
 def heure_page():
     with ui.row().style('align-items: center; justify-content: center; gap: 40px;'):
         ui.label("Page pour changer l'heure")
         ui.button('Retour', on_click=lambda : ui.navigate.to(main_page))
+    #inserer heure 
+    def validate_time():
+        try:
+        # Récupération des valeurs des champs
+            HH = int(hour_input.value)
+            MM = int(minute_input.value)
+
+        # Vérification des plages horaires valides
+            if 0 <= HH < 24 and 0 <= MM < 60:
+                result.set_text(f"Heure validée : {HH:02}:{MM:02}")
+            else:
+                result.set_text("Erreur : heure ou minute invalide")
+        except ValueError: # Gestion des entrées non numériques
+            result.set_text("Erreur : entrez uniquement des chiffres")
+
+    # Inserer l'heure
+    with ui.row():
+        hour_input = ui.input(label="HH", placeholder="00", value="00").props('type=number').style("width: 50px;")
+        ui.label(":")
+        minute_input = ui.input(label="MM", placeholder="00", value="00").props('type=number').style("width: 50px;")
+
+    # Bouton de validation
+    ui.button("Valider l'heure", on_click=validate_time)
+
+    # Zone d'affichage des résultats
+    result = ui.label()
+   
+
 
 #page2 Changement de saison
 @ui.page('/saison') 
@@ -461,12 +492,6 @@ def auto_page():
     with ui.row().style('align-items: center; justify-content: center; gap: 40px;'):
         ui.label("Page journée type")
         ui.button('Retour', on_click=lambda : ui.navigate.to(main_page))
-
-
-
-
-
 ui.navigate.to(main_page, new_tab=False)
 
 ui.run()
-
