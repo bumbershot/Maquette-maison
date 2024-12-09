@@ -31,27 +31,27 @@ from stepperMoteur import Stepper
 def main_page():
     with ui.row().classes('fixed-center'):
         with ui.card(align_items = 'stretch').tight().on('click', lambda: ui.navigate.to(heure_page, new_tab=False) ):
-            ui.image(r'C:\Users\Asus\Desktop\maquette\heure.png')
+            ui.image(r'C:\Users\Asus\Desktop\maquette\img\heure.png')
             with ui.card_section():
                 ui.label("changer l'heure")
         with ui.card(align_items = 'stretch').tight().on('click', lambda: ui.navigate.to(saison_page, new_tab=False)):
-            ui.image(r'C:\Users\Asus\Desktop\maquette\saison.png')
+            ui.image(r'C:\Users\Asus\Desktop\maquette\img\saison.png')
             with ui.card_section():
                  ui.label('changer la saison')
         with ui.card(align_items = 'stretch').tight().on('click', lambda: ui.navigate.to(chauffage_page, new_tab=False)):
-            ui.image(r'C:\Users\Asus\Desktop\maquette\chauffage.png')
+            ui.image(r'C:\Users\Asus\Desktop\maquette\img\chauffage.png')
             with ui.card_section():
                 ui.label('gestion chauffage')
         with ui.card(align_items = 'stretch').tight().on('click', lambda: ui.navigate.to(eclairage_page, new_tab=False)):
-            ui.image(r'C:\Users\Asus\Desktop\maquette\eclairage.png')
+            ui.image(r'C:\Users\Asus\Desktop\maquette\img\eclairage.png')
             with ui.card_section():
                 ui.label('gestion éclairage')
         with ui.card(align_items = 'stretch').tight().on('click', lambda: ui.navigate.to(auto_page, new_tab=False)):
-            ui.image(r'C:\Users\Asus\Desktop\maquette\auto.png')
+            ui.image(r'C:\Users\Asus\Desktop\maquette\img\auto.png')
             with ui.card_section():
                 ui.label('jounée type')
         with ui.card(align_items = 'stretch').tight().on('click', lambda: ui.navigate.to(gar_page, new_tab=False)):
-            ui.image(r'C:\Users\Asus\Desktop\maquette\gar.png')
+            ui.image(r'C:\Users\Asus\Desktop\maquette\img\gar.png')
             with ui.card_section():
                 ui.label('Porte de garage')
                 
@@ -125,11 +125,11 @@ def chauffage_page():
         ui.button('Retour', on_click=lambda : ui.navigate.to(main_page))
     with ui.row().classes('fixed-center'):
         with ui.card(align_items = 'stretch').tight().on('click', lambda: ui.navigate.to(RDCch_page, new_tab=False) ):
-            ui.image(r'C:\Users\Asus\Desktop\maquette\rdcplandesign.png')
+            ui.image(r'C:\Users\Asus\Desktop\maquette\img\rdcplandesign.png')
             with ui.card_section():
                 ui.label("modifier le chauffage du RDC")
         with ui.card(align_items = 'stretch').tight().on('click', lambda: ui.navigate.to(etagech_page, new_tab=False) ):
-            ui.image(r'C:\Users\Asus\Desktop\maquette\etageplandesign.png')
+            ui.image(r'C:\Users\Asus\Desktop\maquette\img\etageplandesign.png')
             with ui.card_section():
                 ui.label("modifier le chauffage du premier étage")
 #pageintegree chauffage1  
@@ -140,47 +140,47 @@ def RDCch_page():
         ui.button('Retour', on_click=lambda : ui.navigate.to(chauffage_page))
     with ui.row():
         with ui.card(align_items = 'stretch').tight().on('click', lambda: ui.navigate.to(garagech_page, new_tab=False) ):
-            ui.image(r'C:\Users\Asus\Desktop\maquette\garage.png')
+            ui.image(r'C:\Users\Asus\Desktop\maquette\img\garage.png')
             with ui.card_section():
                 ui.label("modifier le chauffage du garage")
         with ui.card(align_items = 'stretch').tight().on('click', lambda: ui.navigate.to(celierch_page, new_tab=False) ):
-            ui.image(r'C:\Users\Asus\Desktop\maquette\celier.png')
+            ui.image(r'C:\Users\Asus\Desktop\maquette\img\celier.png')
             with ui.card_section():
                 ui.label("modifier le chauffage du celier")
         with ui.card(align_items = 'stretch').tight().on('click', lambda: ui.navigate.to(sejourch_page, new_tab=False) ):
-            ui.image(r'C:\Users\Asus\Desktop\maquette\sejour.png')
+            ui.image(r'C:\Users\Asus\Desktop\maquette\img\sejour.png')
             with ui.card_section():
                 ui.label("modifier le chauffage du séjour")
         with ui.card(align_items = 'stretch').tight().on('click', lambda: ui.navigate.to(cuisinech_page, new_tab=False) ):
-            ui.image(r'C:\Users\Asus\Desktop\maquette\cuisine.png')
+            ui.image(r'C:\Users\Asus\Desktop\maquette\img\cuisine.png')
             with ui.card_section():
                 ui.label("modifier le chauffage de la cuisine")
         with ui.card(align_items = 'stretch').tight().on('click', lambda: ui.navigate.to(SDBch_page, new_tab=False) ):
-            ui.image(r'C:\Users\Asus\Desktop\maquette\sdb.png')
+            ui.image(r'C:\Users\Asus\Desktop\maquette\img\sdb.png')
             with ui.card_section():
                 ui.label("modifier le chauffage de la salle de bain")
         with ui.card(align_items = 'stretch').tight().on('click', lambda: ui.navigate.to(salonch_page, new_tab=False) ):
-            ui.image(r'C:\Users\Asus\Desktop\maquette\salon.png')
+            ui.image(r'C:\Users\Asus\Desktop\maquette\img\salon.png')
             with ui.card_section():
                 ui.label("modifier le chauffage du salon")
         with ui.card(align_items = 'stretch').tight().on('click', lambda: ui.navigate.to(chambre1ch_page, new_tab=False) ):
-            ui.image(r'C:\Users\Asus\Desktop\maquette\chambre1.png')
+            ui.image(r'C:\Users\Asus\Desktop\maquette\img\chambre1.png')
             with ui.card_section():
                 ui.label("modifier le chauffage de la chambre 1")
         with ui.card(align_items = 'stretch').tight().on('click', lambda: ui.navigate.to(Hallch_page, new_tab=False) ):
-            ui.image(r'C:\Users\Asus\Desktop\maquette\hall.png')
+            ui.image(r'C:\Users\Asus\Desktop\maquette\img\hall.png')
             with ui.card_section():
                 ui.label("modifier le chauffage du hall")
         with ui.card(align_items = 'stretch').tight().on('click', lambda: ui.navigate.to(SDBHallch_page, new_tab=False) ):
-            ui.image(r'C:\Users\Asus\Desktop\maquette\sdbhall.png')
+            ui.image(r'C:\Users\Asus\Desktop\maquette\img\sdbhall.png')
             with ui.card_section():
                 ui.label("modifier le chauffage de la SDB Hall")
         with ui.card(align_items = 'stretch').tight().on('click', lambda: ui.navigate.to(WCch_page, new_tab=False) ):
-            ui.image(r'C:\Users\Asus\Desktop\maquette\wc.png')
+            ui.image(r'C:\Users\Asus\Desktop\maquette\img\wc.png')
             with ui.card_section():
                 ui.label("modifier le chauffage des WC")
         with ui.card(align_items = 'stretch').tight().on('click', lambda: ui.navigate.to(bureauch_page, new_tab=False) ):
-            ui.image(r'C:\Users\Asus\Desktop\maquette\bureau.png')
+            ui.image(r'C:\Users\Asus\Desktop\maquette\img\bureau.png')
             with ui.card_section():
                 ui.label("modifier le chauffage du bureau")
 
@@ -377,27 +377,27 @@ def etagech_page():
         ui.button('Retour', on_click=lambda : ui.navigate.to(chauffage_page))
     with ui.row():
         with ui.card(align_items = 'stretch').tight().on('click', lambda: ui.navigate.to(bureau2ch_page, new_tab=False) ):
-            ui.image(r'C:\Users\Asus\Desktop\maquette\bureau.png')
+            ui.image(r'C:\Users\Asus\Desktop\maquette\img\bureau.png')
             with ui.card_section():
                 ui.label("modifier le chauffage du bureau")
         with ui.card(align_items = 'stretch').tight().on('click', lambda: ui.navigate.to(sasch_page, new_tab=False) ):
-            ui.image(r'C:\Users\Asus\Desktop\maquette\sas.png')
+            ui.image(r'C:\Users\Asus\Desktop\maquette\img\sas.png')
             with ui.card_section():
                 ui.label("modifier le chauffage du SAS")
         with ui.card(align_items = 'stretch').tight().on('click', lambda: ui.navigate.to(hall2ch_page, new_tab=False) ):
-            ui.image(r'C:\Users\Asus\Desktop\maquette\hall.png')
+            ui.image(r'C:\Users\Asus\Desktop\maquette\img\hall.png')
             with ui.card_section():
                 ui.label("modifier le chauffage du hall")
         with ui.card(align_items = 'stretch').tight().on('click', lambda: ui.navigate.to(chambre2ch_page, new_tab=False) ):
-            ui.image(r'C:\Users\Asus\Desktop\maquette\chambre2.png')
+            ui.image(r'C:\Users\Asus\Desktop\maquette\img\chambre2.png')
             with ui.card_section():
                 ui.label("modifier le chauffage de la chambre 2")
         with ui.card(align_items = 'stretch').tight().on('click', lambda: ui.navigate.to(sdb2ch_page, new_tab=False) ):
-            ui.image(r'C:\Users\Asus\Desktop\maquette\sdb.png')
+            ui.image(r'C:\Users\Asus\Desktop\maquette\img\sdb.png')
             with ui.card_section():
                 ui.label("modifier le chauffage de la salle de bain")
         with ui.card(align_items = 'stretch').tight().on('click', lambda: ui.navigate.to(chambre3ch_page, new_tab=False) ):
-            ui.image(r'C:\Users\Asus\Desktop\maquette\chambre3.png')
+            ui.image(r'C:\Users\Asus\Desktop\maquette\img\chambre3.png')
             with ui.card_section():
                 ui.label("modifier le chauffage de la chambre 3")
 
@@ -506,11 +506,11 @@ def eclairage_page():
         ui.button('Retour', on_click=lambda : ui.navigate.to(main_page))
     with ui.row().classes('fixed-center'):
         with ui.card(align_items = 'stretch').tight().on('click', lambda: ui.navigate.to(RDCec_page, new_tab=False) ):
-            ui.image(r'C:\Users\Asus\Desktop\maquette\rdcplandesign.png')
+            ui.image(r'C:\Users\Asus\Desktop\maquette\img\rdcplandesign.png')
             with ui.card_section():
                 ui.label("modifier l'eclairage du RDC")
         with ui.card(align_items = 'stretch').tight().on('click', lambda: ui.navigate.to(etageec_page, new_tab=False) ):
-            ui.image(r'C:\Users\Asus\Desktop\maquette\etageplandesign.png')
+            ui.image(r'C:\Users\Asus\Desktop\maquette\img\etageplandesign.png')
             with ui.card_section():
                 ui.label("modifier l'éclairage du premier étage")
 #pageintegree eclairage  
@@ -521,47 +521,47 @@ def RDCec_page():
         ui.button('Retour', on_click=lambda : ui.navigate.to(eclairage_page))
     with ui.row():
         with ui.card(align_items = 'stretch').tight().on('click', lambda: ui.navigate.to(garageec_page, new_tab=False) ):
-            ui.image(r'C:\Users\Asus\Desktop\maquette\garage.png')
+            ui.image(r'C:\Users\Asus\Desktop\maquette\img\garage.png')
             with ui.card_section():
                 ui.label("modifier l'éclairage du garage")
         with ui.card(align_items = 'stretch').tight().on('click', lambda: ui.navigate.to(celierec_page, new_tab=False) ):
-            ui.image(r'C:\Users\Asus\Desktop\maquette\celier.png')
+            ui.image(r'C:\Users\Asus\Desktop\maquette\img\celier.png')
             with ui.card_section():
                 ui.label("modifier l'éclairage du celier")
         with ui.card(align_items = 'stretch').tight().on('click', lambda: ui.navigate.to(sejourec_page, new_tab=False) ):
-            ui.image(r'C:\Users\Asus\Desktop\maquette\sejour.png')
+            ui.image(r'C:\Users\Asus\Desktop\maquette\img\sejour.png')
             with ui.card_section():
                 ui.label("modifier l'éclairage du séjour")
         with ui.card(align_items = 'stretch').tight().on('click', lambda: ui.navigate.to(cuisineec_page, new_tab=False) ):
-            ui.image(r'C:\Users\Asus\Desktop\maquette\cuisine.png')
+            ui.image(r'C:\Users\Asus\Desktop\maquette\img\cuisine.png')
             with ui.card_section():
                 ui.label("modifier l'éclairage de la cuisine")
         with ui.card(align_items = 'stretch').tight().on('click', lambda: ui.navigate.to(SDBec_page, new_tab=False) ):
-            ui.image(r'C:\Users\Asus\Desktop\maquette\sdb.png')
+            ui.image(r'C:\Users\Asus\Desktop\maquette\img\sdb.png')
             with ui.card_section():
                 ui.label("modifier l'éclairage de la salle de bain")
         with ui.card(align_items = 'stretch').tight().on('click', lambda: ui.navigate.to(salonec_page, new_tab=False) ):
-            ui.image(r'C:\Users\Asus\Desktop\maquette\salon.png')
+            ui.image(r'C:\Users\Asus\Desktop\maquette\img\salon.png')
             with ui.card_section():
                 ui.label("modifier l'éclairage du salon")
         with ui.card(align_items = 'stretch').tight().on('click', lambda: ui.navigate.to(chambre1ec_page, new_tab=False) ):
-            ui.image(r'C:\Users\Asus\Desktop\maquette\chambre1.png')
+            ui.image(r'C:\Users\Asus\Desktop\maquette\img\chambre1.png')
             with ui.card_section():
                 ui.label("modifier l'éclairage de la chambre 1")
         with ui.card(align_items = 'stretch').tight().on('click', lambda: ui.navigate.to(Hallec_page, new_tab=False) ):
-            ui.image(r'C:\Users\Asus\Desktop\maquette\hall.png')
+            ui.image(r'C:\Users\Asus\Desktop\maquette\img\hall.png')
             with ui.card_section():
                 ui.label("modifier l'éclairage du hall")
         with ui.card(align_items = 'stretch').tight().on('click', lambda: ui.navigate.to(SDBHallec_page, new_tab=False) ):
-            ui.image(r'C:\Users\Asus\Desktop\maquette\sdbhall.png')
+            ui.image(r'C:\Users\Asus\Desktop\maquette\img\sdbhall.png')
             with ui.card_section():
                 ui.label("modifier l'éclairage de la SDB Hall")
         with ui.card(align_items = 'stretch').tight().on('click', lambda: ui.navigate.to(WCec_page, new_tab=False) ):
-            ui.image(r'C:\Users\Asus\Desktop\maquette\wc.png')
+            ui.image(r'C:\Users\Asus\Desktop\maquette\img\wc.png')
             with ui.card_section():
                 ui.label("modifier l'éclairage des WC")
         with ui.card(align_items = 'stretch').tight().on('click', lambda: ui.navigate.to(bureauec_page, new_tab=False) ):
-            ui.image(r'C:\Users\Asus\Desktop\maquette\bureau.png')
+            ui.image(r'C:\Users\Asus\Desktop\maquette\img\bureau.png')
             with ui.card_section():
                 ui.label("modifier l'éclairage du bureau")
 
@@ -569,37 +569,37 @@ def RDCec_page():
 @ui.page('/RDCec/garage')
 def garageec_page():
     with ui.row().style('align-item: center; justify-content: center; gap: 40px'):
-        ui.label('vous être en train de modifier le chauffage du garage')
+        ui.label("vous être en train de modifier l'éclairage du garage")
         ui.button('Retour', on_click=lambda: ui.navigate.to(RDCec_page))
 @ui.page('/RDCec/celier')
 def celierec_page():
     with ui.row().style('align-item: center; justify-content: center; gap: 40px'):
-        ui.label('vous être en train de modifier le chauffage du celier')
+        ui.label("vous être en train de modifier l'éclairage du celier")
         ui.button('Retour', on_click=lambda: ui.navigate.to(RDCec_page))
 @ui.page('/RDCec/SDB')
 def SDBec_page():
     with ui.row().style('align-item: center; justify-content: center; gap: 40px'):
-        ui.label('vous être en train de modifier le chauffage de la salle de bain')
+        ui.label("vous être en train de modifier l'éclairage de la salle de bain")
         ui.button('Retour', on_click=lambda: ui.navigate.to(RDCec_page))
 @ui.page('/RDCec/SDBHall')
 def SDBHallec_page():
     with ui.row().style('align-item: center; justify-content: center; gap: 40px'):
-        ui.label('vous être en train de modifier le chauffage du hall de la salle de bain')
+        ui.label("vous être en train de modifier l'éclairage du hall de la salle de bain")
         ui.button('Retour', on_click=lambda: ui.navigate.to(RDCec_page))
 @ui.page('/RDCec/sejour')
 def sejourec_page():
     with ui.row().style('align-item: center; justify-content: center; gap: 40px'):
-        ui.label('vous être en train de modifier le chauffage du séjour')
+        ui.label("vous être en train de modifier l'éclairage du séjour")
         ui.button('Retour', on_click=lambda: ui.navigate.to(RDCec_page))
 @ui.page('/RDCec/cuisine')
 def cuisineec_page():
     with ui.row().style('align-item: center; justify-content: center; gap: 40px'):
-        ui.label('vous être en train de modifier le chauffage de la cuisine')
+        ui.label("vous être en train de modifier l'éclairage de la cuisine")
         ui.button('Retour', on_click=lambda: ui.navigate.to(RDCec_page))
 @ui.page('/RDCec/chambre1')
 def chambre1ec_page():
     with ui.row().style('align-item: center; justify-content: center; gap: 40px'):
-        ui.label('vous être en train de modifier le chauffage de la chambre 1')
+        ui.label("vous être en train de modifier l'éclairage de la chambre 1")
         ui.button('Retour', on_click=lambda: ui.navigate.to(RDCec_page))
 @ui.page('/RDCec/hall')
 def Hallec_page():
@@ -632,31 +632,31 @@ def etageec_page():
         ui.button('Retour', on_click=lambda : ui.navigate.to(eclairage_page))
     with ui.row():
         with ui.card(align_items = 'stretch').tight().on('click', lambda: ui.navigate.to(terrasseec_page, new_tab=False) ):
-            ui.image(r'C:\Users\Asus\Desktop\maquette\terrasse.png')
+            ui.image(r'C:\Users\Asus\Desktop\maquette\img\terrasse.png')
             with ui.card_section():
                 ui.label("modifier l'éclairage de la terrasse")
         with ui.card(align_items = 'stretch').tight().on('click', lambda: ui.navigate.to(bureau2ec_page, new_tab=False) ):
-            ui.image(r'C:\Users\Asus\Desktop\maquette\bureau.png')
+            ui.image(r'C:\Users\Asus\Desktop\maquette\img\bureau.png')
             with ui.card_section():
                 ui.label("modifier l'éclairage du bureau")
         with ui.card(align_items = 'stretch').tight().on('click', lambda: ui.navigate.to(sasec_page, new_tab=False) ):
-            ui.image(r'C:\Users\Asus\Desktop\maquette\sas.png')
+            ui.image(r'C:\Users\Asus\Desktop\maquette\img\sas.png')
             with ui.card_section():
                 ui.label("modifier l'éclairage du SAS")
         with ui.card(align_items = 'stretch').tight().on('click', lambda: ui.navigate.to(hall2ec_page, new_tab=False) ):
-            ui.image(r'C:\Users\Asus\Desktop\maquette\hall.png')
+            ui.image(r'C:\Users\Asus\Desktop\maquette\img\hall.png')
             with ui.card_section():
                 ui.label("modifier l'éclairage du hall")
         with ui.card(align_items = 'stretch').tight().on('click', lambda: ui.navigate.to(chambre2ec_page, new_tab=False) ):
-            ui.image(r'C:\Users\Asus\Desktop\maquette\chambre2.png')
+            ui.image(r'C:\Users\Asus\Desktop\maquette\img\chambre2.png')
             with ui.card_section():
                 ui.label("modifier l'éclairage de la chambre 2")
         with ui.card(align_items = 'stretch').tight().on('click', lambda: ui.navigate.to(sdb2ec_page, new_tab=False) ):
-            ui.image(r'C:\Users\Asus\Desktop\maquette\sdb.png')
+            ui.image(r'C:\Users\Asus\Desktop\maquette\img\sdb.png')
             with ui.card_section():
                 ui.label("modifier l'éclairage de la salle de bain")
         with ui.card(align_items = 'stretch').tight().on('click', lambda: ui.navigate.to(chambre3ec_page, new_tab=False) ):
-            ui.image(r'C:\Users\Asus\Desktop\maquette\chambre3.png')
+            ui.image(r'C:\Users\Asus\Desktop\maquette\img\chambre3.png')
             with ui.card_section():
                 ui.label("modifier l'éclairage de la chambre 3")
 
