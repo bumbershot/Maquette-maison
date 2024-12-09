@@ -11,7 +11,7 @@ def validate_temperature(temp_input, result):
 
 
 #heure
-last_time = "00:00"
+last_time= "00:00"
 def validate_time(hour_input,minute_input,result,last_time_label):
     global last_time
     try:
