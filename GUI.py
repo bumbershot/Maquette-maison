@@ -1,7 +1,7 @@
-
+import os
 from nicegui import ui
 from nicegui.events import ValueChangeEventArguments
-from fct_inter import validate_temperature,validate_time
+from fct_inter import validate_temperature,validate_time,last_time
 # def show(event: ValueChangeEventArguments):
 #     name = type(event.sender).__name__
 #     ui.notify(f'{name}: {event.value}')
@@ -54,11 +54,14 @@ def main_page():
 
 #page1  changement d heure
 @ui.page('/heure') 
+
 def heure_page():
+    global last_time
     with ui.row().style('align-items: center; justify-content: center; gap: 40px;'):
         ui.label("Page pour changer l'heure")
         ui.button('Retour', on_click=lambda : ui.navigate.to(main_page))
-          
+    with ui.row().style('align-items: center; justify-content: center; gap: 40px;'):
+        last_time_label=ui.label(f"Heure précedente:{last_time}")  
     # Inserer l'heure
     with ui.row():
         hour_input = ui.input(label="HH", placeholder="00", value="00").props('type=number').style("width: 50px;")
@@ -67,31 +70,38 @@ def heure_page():
   # Zone d'affichage des résultats
     result = ui.label()
     # Bouton de validation
-    ui.button("Valider l'heure souhaitée", on_click=lambda: validate_time(hour_input, minute_input, result))
+    ui.button("Valider l'heure souhaitée", on_click=lambda: validate_time(hour_input, minute_input, result,last_time_label))
 
 
    
 
 
 #page2 Changement de saison
+last_season = "Automne"
 @ui.page('/saison') 
 def saison_page():
+    global last_season
     with ui.row().style('align-items: center; justify-content: center; gap: 40px;'):
         ui.label("Page pour changer la saison")
         ui.button('Retour', on_click=lambda : ui.navigate.to(main_page))
     # Fonction pour afficher la saison choisie
     def afficher_saison(e):
-        resultat.set_text(f"Vous avez choisi : {e.value}")
+        global last_season
+        last_season_label.set_text(f"Saison précédente : {last_season}")
+        last_season = e.value
+        result.set_text(f"Vous avez choisi : {e.value}")
+    with ui.row().style('align-items: center; justify-content: center; gap: 20px;'):
+        last_season_label = ui.label(f"Saison précédente : {last_season}")
     with ui.row().style('gap: 20px;'):
         # Sélecteur de saison
         ui.label('Choisissez une saison :')
-        saison_selecteur = ui.radio(
+        season_selector = ui.radio(
             ['Automne', 'Hiver', 'Printemps', 'Été'], 
             value='Automne', 
             on_change=afficher_saison ).props('inline')
 
     # Zone pour afficher la saison choisie
-    resultat = ui.label(f"Vous avez choisi : {saison_selecteur.value}")
+    result = ui.label(f"Vous avez choisi : {season_selector.value}")
 
 #CHAUFFAGE 
 #page3  GESTION chau
@@ -456,7 +466,7 @@ def chambre2ch_page():
 
 @ui.page('/etagech/chambre3')
 def chambre3ch_page():
-    with ui.row().style('align-item: center; justify-content: center; gap: 40px'):
+    with ui.column().style('align-item: center; justify-content: center; gap: 40px'):
         ui.label('vous être en train de modifier le chauffage de la chambre 3')
         ui.button('Retour', on_click=lambda: ui.navigate.to(etagech_page))
                     # Zone pour afficher les résultats
