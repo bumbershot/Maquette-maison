@@ -2,6 +2,10 @@ import os
 from nicegui import ui
 from nicegui.events import ValueChangeEventArguments
 from fct_inter import validate_temperature,validate_time,last_time
+from Garage import Garage
+from paramètres import *
+from stepperMoteur import Stepper
+
 # def show(event: ValueChangeEventArguments):
 #     name = type(event.sender).__name__
 #     ui.notify(f'{name}: {event.value}')
@@ -46,9 +50,14 @@ def main_page():
             ui.image(r'C:\Users\Asus\Desktop\maquette\auto.png')
             with ui.card_section():
                 ui.label('jounée type')
-#arrêt d urgence
+        with ui.card(align_items = 'stretch').tight().on('click', lambda: ui.navigate.to(gar_page, new_tab=False)):
+            ui.image(r'C:\Users\Asus\Desktop\maquette\gar.png')
+            with ui.card_section():
+                ui.label('Porte de garage')
+                
+#arrêt
     with ui.row().classes('absolute bottom-0 right-0 p-4'):
-        ui.button("ARRÊT D'URGENCE",color='red', on_click=lambda: ui.notify('arrêt absolu!'))
+        ui.button("RESET",color='red', on_click=lambda: ui.notify('arrêt absolu!'))
 
 
 
@@ -71,6 +80,7 @@ def heure_page():
     result = ui.label()
     # Bouton de validation
     ui.button("Valider l'heure souhaitée", on_click=lambda: validate_time(hour_input, minute_input, result,last_time_label))
+
 
 
    
@@ -100,8 +110,11 @@ def saison_page():
             value='Automne', 
             on_change=afficher_saison ).props('inline')
 
-    # Zone pour afficher la saison choisie
+    # affichage de la saison choisie
     result = ui.label(f"Vous avez choisi : {season_selector.value}")
+
+
+   
 
 #CHAUFFAGE 
 #page3  GESTION chau
@@ -481,6 +494,9 @@ def chambre3ch_page():
 
 
 
+   
+
+
 #ELCLAIRAGE
 #page4 GESTION elec
 @ui.page('/eclairage') 
@@ -682,12 +698,32 @@ def chambre3ec_page():
         ui.button('Retour', on_click=lambda: ui.navigate.to(etageec_page))
 
 
+
+   
+
 #page5  journee type 
 @ui.page('/auto') 
 def auto_page():
     with ui.row().style('align-items: center; justify-content: center; gap: 40px;'):
         ui.label("Page journée type")
         ui.button('Retour', on_click=lambda : ui.navigate.to(main_page))
+
+#page6  garage 
+@ui.page('/garage')
+def gar_page():
+    global garage
+    with ui.row().style('align-items: center; justify-content: center; gap: 40px;'):
+        ui.label("garage")
+        ui.button('Retour', on_click=lambda : ui.navigate.to(main_page))
+    with ui.column().style('align-items: center; justify-content: center; gap: 40px;'):
+        ui.button("ouvrir le garage ",color='green', on_click= lambda : garage.ouverture())
+        ui.button("fermer le garage ",color='red', on_click=lambda : garage.Fermeture())
+        
+#plage de modif obj 
+#from Sphere import sphere
+#sphere = sphere(#parametre)
+stepper = Stepper(param_stepper["pinENA"],param_stepper["pinDIR"],param_stepper["pinPUL"])
+garage = Garage(stepper,param_FC_1["pin"],param_FC_1["pin"])
 ui.navigate.to(main_page, new_tab=False)
 
 ui.run()
