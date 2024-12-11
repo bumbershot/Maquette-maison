@@ -5,6 +5,7 @@ from fct_inter import validate_temperature,validate_time,last_time
 from Garage import Garage
 from paramètres import *
 from stepperMoteur import Stepper
+#from Tracker import tracker   
 
 # def show(event: ValueChangeEventArguments):
 #     name = type(event.sender).__name__
@@ -58,7 +59,7 @@ def main_page():
 #arrêt
     with ui.row().classes('absolute bottom-0 right-0 p-4'):
         ui.button("RESET",color='red', on_click=lambda: ui.notify('arrêt absolu!'))
-
+                                                        #  ,os.system("sudo reboot")))
 
 
 #page1  changement d heure
@@ -66,6 +67,7 @@ def main_page():
 
 def heure_page():
     global last_time
+    # global trackerSolaire
     with ui.row().style('align-items: center; justify-content: center; gap: 40px;'):
         ui.label("Page pour changer l'heure")
         ui.button('Retour', on_click=lambda : ui.navigate.to(main_page))
@@ -80,6 +82,7 @@ def heure_page():
     result = ui.label()
     # Bouton de validation
     ui.button("Valider l'heure souhaitée", on_click=lambda: validate_time(hour_input, minute_input, result,last_time_label))
+            #    trackerSolaire(servo_horizontal,servo_vertical))
 
 
 
@@ -565,62 +568,89 @@ def RDCec_page():
             with ui.card_section():
                 ui.label("modifier l'éclairage du bureau")
 
+
+#allumer elec notif/changement a voir plus tard
+def on_switch_change(event):
+    ui.notify(f"LEDs: {'allumées' if event.value else 'éteintes'}")
+
 # les differentes pieces du RDC
 @ui.page('/RDCec/garage')
 def garageec_page():
     with ui.row().style('align-item: center; justify-content: center; gap: 40px'):
         ui.label("vous être en train de modifier l'éclairage du garage")
         ui.button('Retour', on_click=lambda: ui.navigate.to(RDCec_page))
+    with ui.row():
+        ui.switch('allumer', on_change=on_switch_change)
 @ui.page('/RDCec/celier')
 def celierec_page():
     with ui.row().style('align-item: center; justify-content: center; gap: 40px'):
         ui.label("vous être en train de modifier l'éclairage du celier")
         ui.button('Retour', on_click=lambda: ui.navigate.to(RDCec_page))
+    with ui.row():
+        ui.switch('allumer', on_change=on_switch_change)
 @ui.page('/RDCec/SDB')
 def SDBec_page():
     with ui.row().style('align-item: center; justify-content: center; gap: 40px'):
         ui.label("vous être en train de modifier l'éclairage de la salle de bain")
         ui.button('Retour', on_click=lambda: ui.navigate.to(RDCec_page))
+    with ui.row():
+        ui.switch('allumer', on_change=on_switch_change)
 @ui.page('/RDCec/SDBHall')
 def SDBHallec_page():
     with ui.row().style('align-item: center; justify-content: center; gap: 40px'):
         ui.label("vous être en train de modifier l'éclairage du hall de la salle de bain")
         ui.button('Retour', on_click=lambda: ui.navigate.to(RDCec_page))
+    with ui.row():
+        ui.switch('allumer', on_change=on_switch_change)
 @ui.page('/RDCec/sejour')
 def sejourec_page():
     with ui.row().style('align-item: center; justify-content: center; gap: 40px'):
         ui.label("vous être en train de modifier l'éclairage du séjour")
         ui.button('Retour', on_click=lambda: ui.navigate.to(RDCec_page))
+    with ui.row():
+        ui.switch('allumer', on_change=on_switch_change)
 @ui.page('/RDCec/cuisine')
 def cuisineec_page():
     with ui.row().style('align-item: center; justify-content: center; gap: 40px'):
         ui.label("vous être en train de modifier l'éclairage de la cuisine")
         ui.button('Retour', on_click=lambda: ui.navigate.to(RDCec_page))
+    with ui.row():
+        ui.switch('allumer', on_change=on_switch_change)
 @ui.page('/RDCec/chambre1')
 def chambre1ec_page():
     with ui.row().style('align-item: center; justify-content: center; gap: 40px'):
         ui.label("vous être en train de modifier l'éclairage de la chambre 1")
         ui.button('Retour', on_click=lambda: ui.navigate.to(RDCec_page))
+    with ui.row():
+        ui.switch('allumer', on_change=on_switch_change)
 @ui.page('/RDCec/hall')
 def Hallec_page():
     with ui.row().style('align-item: center; justify-content: center; gap: 40px'):
         ui.label("vous être en train de modifier l'éclairage du Hall")
         ui.button('Retour', on_click=lambda: ui.navigate.to(RDCec_page))
+    with ui.row():
+        ui.switch('allumer', on_change=on_switch_change)
 @ui.page('/RDCec/bureau')
 def bureauec_page():
     with ui.row().style('align-item: center; justify-content: center; gap: 40px'):
         ui.label("vous être en train de modifier l'éclairage du bureau")
         ui.button('Retour', on_click=lambda: ui.navigate.to(RDCec_page))
+    with ui.row():
+        ui.switch('allumer', on_change=on_switch_change)
 @ui.page('/RDCec/salon')
 def salonec_page():
     with ui.row().style('align-item: center; justify-content: center; gap: 40px'):
         ui.label("vous être en train de modifier l'éclairage du salon")
         ui.button('Retour', on_click=lambda: ui.navigate.to(RDCec_page))
+    with ui.row():
+        ui.switch('allumer', on_change=on_switch_change)
 @ui.page('/RDCec/wc')
 def WCec_page():
     with ui.row().style('align-item: center; justify-content: center; gap: 40px'):
         ui.label("vous être en train de modifier l'éclairage des WC")
         ui.button('Retour', on_click=lambda: ui.navigate.to(RDCec_page))
+    with ui.row():
+        ui.switch('allumer', on_change=on_switch_change)
 
 
 
@@ -666,36 +696,50 @@ def terrasseec_page():
     with ui.row().style('align-item: center; justify-content: center; gap: 40px'):
         ui.label("vous être en train de modifier l'éclairage dela terrasse")
         ui.button('Retour', on_click=lambda: ui.navigate.to(etageec_page))
+    with ui.row():
+        ui.switch('allumer', on_change=on_switch_change)
 @ui.page('/etageec/bureau')
 def bureau2ec_page():
     with ui.row().style('align-item: center; justify-content: center; gap: 40px'):
         ui.label("vous être en train de modifier l'éclairage du bureau")
         ui.button('Retour', on_click=lambda: ui.navigate.to(etageec_page))
+    with ui.row():
+        ui.switch('allumer', on_change=on_switch_change)
 @ui.page('/etageec/sas')
 def sasec_page():
     with ui.row().style('align-item: center; justify-content: center; gap: 40px'):
         ui.label("vous être en train de modifier l'éclairage du SAS")
         ui.button('Retour', on_click=lambda: ui.navigate.to(etageec_page))
+    with ui.row():
+        ui.switch('allumer', on_change=on_switch_change)
 @ui.page('/etageec/hall')
 def hall2ec_page():
     with ui.row().style('align-item: center; justify-content: center; gap: 40px'):
         ui.label("vous être en train de modifier l'éclairage du hall")
         ui.button('Retour', on_click=lambda: ui.navigate.to(etageec_page))
+    with ui.row():
+        ui.switch('allumer', on_change=on_switch_change)
 @ui.page('/etageec/sdb')
 def sdb2ec_page():
     with ui.row().style('align-item: center; justify-content: center; gap: 40px'):
         ui.label("vous être en train de modifier l'éclairage du hall de la salle de bain")
         ui.button('Retour', on_click=lambda: ui.navigate.to(etageec_page))
+    with ui.row():
+        ui.switch('allumer', on_change=on_switch_change)
 @ui.page('/etageec/chambre2')
 def chambre2ec_page():
     with ui.row().style('align-item: center; justify-content: center; gap: 40px'):
         ui.label("vous être en train de modifier l'éclairage de la chambre 2")
         ui.button('Retour', on_click=lambda: ui.navigate.to(etageec_page))
+    with ui.row():
+        ui.switch('allumer', on_change=on_switch_change)
 @ui.page('/etageec/chambre3')
 def chambre3ec_page():
     with ui.row().style('align-item: center; justify-content: center; gap: 40px'):
         ui.label("vous être en train de modifier l'éclairage de la chambre 3")
         ui.button('Retour', on_click=lambda: ui.navigate.to(etageec_page))
+    with ui.row():
+        ui.switch('allumer', on_change=on_switch_change)
 
 
 
@@ -715,15 +759,20 @@ def gar_page():
     with ui.row().style('align-items: center; justify-content: center; gap: 40px;'):
         ui.label("garage")
         ui.button('Retour', on_click=lambda : ui.navigate.to(main_page))
+    #partie rasp
     with ui.column().style('align-items: center; justify-content: center; gap: 40px;'):
         ui.button("ouvrir le garage ",color='green', on_click= lambda : garage.ouverture())
         ui.button("fermer le garage ",color='red', on_click=lambda : garage.Fermeture())
         
-#plage de modif obj 
+#plage de modif parametres 
 #from Sphere import sphere
-#sphere = sphere(#parametre)
+#sphere = sphere(paramtre)
 stepper = Stepper(param_stepper["pinENA"],param_stepper["pinDIR"],param_stepper["pinPUL"])
-garage = Garage(stepper,param_FC_1["pin"],param_FC_1["pin"])
+garage = Garage(stepper,param_FC_ouverture["pin"],param_FC_fermeture["pin"])
+# servo_horizontal = AngularServo(param_servo_tracker_horizontal['pin'], min_angle=param_servo_tracker_horizontal['min_angle'],max_angle=param_servo_tracker_horizontal['max_angle'],min_pulse_width=param_servo_tracker_horizontal['min_pulse_width'],max_pulse_width= param_servo_tracker_horizontal['max_pulse_width'])   #servo noir
+# servo_vertical = AngularServo(param_servo_tracker_vertical['pin'], min_angle=param_servo_tracker_vertical['min_angle'],max_angle=param_servo_tracker_vertical['max_angle'],min_pulse_width=param_servo_tracker_vertical['min_pulse_width'],max_pulse_width=param_servo_tracker_vertical['max_pulse_width'])     #servo bleu
+# trackerSolaire = tracker(servo_horizontal,servo_vertical)
+
 ui.navigate.to(main_page, new_tab=False)
 
 ui.run()
