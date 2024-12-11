@@ -5,7 +5,8 @@ from fct_inter import validate_temperature,validate_time,last_time
 from Garage import Garage
 from paramètres import *
 from stepperMoteur import Stepper
-#from Tracker import tracker   
+from Tracker import tracker   
+# from gpiozero import AngularServo
 
 # def show(event: ValueChangeEventArguments):
 #     name = type(event.sender).__name__
@@ -67,6 +68,11 @@ def main_page():
 
 def heure_page():
     global last_time
+ 
+    # global trackerSolaire
+    # global heure
+    # global minutes
+
     # global trackerSolaire
     with ui.row().style('align-items: center; justify-content: center; gap: 40px;'):
         ui.label("Page pour changer l'heure")
@@ -81,9 +87,16 @@ def heure_page():
   # Zone d'affichage des résultats
     result = ui.label()
     # Bouton de validation
-    ui.button("Valider l'heure souhaitée", on_click=lambda: validate_time(hour_input, minute_input, result,last_time_label))
-            #    trackerSolaire(servo_horizontal,servo_vertical))
-
+    # ui.button("Valider l'heure souhaitée", on_click=lambda: (checkAndMove(hour_input, minute_input, result,last_time_label)))
+    ui.button("Valider l'heure souhaitée", on_click=lambda:validate_time(hour_input, minute_input, result,last_time_label))
+# def checkAndMove(hour_input, minute_input, result,last_time_label):
+#     # global trackerSolaire
+#     # global servo_horizontal
+#     # global servo_vertical
+#     trackerSolaire = tracker(servo_horizontal,servo_vertical)
+#     if validate_time(hour_input, minute_input, result,last_time_label):
+#         azimut,elevation = trackerSolaire.calculPositionWithDateAzimut(season,heure,minutes)
+#         trackerSolaire.goToPosition(azimut,elevation)
 
 
    
@@ -94,6 +107,10 @@ last_season = "Automne"
 @ui.page('/saison') 
 def saison_page():
     global last_season
+    global season
+
+    season = season_selector
+
     with ui.row().style('align-items: center; justify-content: center; gap: 40px;'):
         ui.label("Page pour changer la saison")
         ui.button('Retour', on_click=lambda : ui.navigate.to(main_page))
@@ -767,11 +784,23 @@ def gar_page():
 #plage de modif parametres 
 #from Sphere import sphere
 #sphere = sphere(paramtre)
+# porte garage 
 stepper = Stepper(param_stepper["pinENA"],param_stepper["pinDIR"],param_stepper["pinPUL"])
 garage = Garage(stepper,param_FC_ouverture["pin"],param_FC_fermeture["pin"])
-# servo_horizontal = AngularServo(param_servo_tracker_horizontal['pin'], min_angle=param_servo_tracker_horizontal['min_angle'],max_angle=param_servo_tracker_horizontal['max_angle'],min_pulse_width=param_servo_tracker_horizontal['min_pulse_width'],max_pulse_width= param_servo_tracker_horizontal['max_pulse_width'])   #servo noir
-# servo_vertical = AngularServo(param_servo_tracker_vertical['pin'], min_angle=param_servo_tracker_vertical['min_angle'],max_angle=param_servo_tracker_vertical['max_angle'],min_pulse_width=param_servo_tracker_vertical['min_pulse_width'],max_pulse_width=param_servo_tracker_vertical['max_pulse_width'])     #servo bleu
-# trackerSolaire = tracker(servo_horizontal,servo_vertical)
+# tracker
+# if __name__ == "__main__":
+#     heure =  12
+#     minutes = 30
+#     season = 'Printemps'
+#     trackerSolaire = None
+
+#     print("param_servo_tracker_horizontal:", param_servo_tracker_horizontal['pin'])
+#     servo_horizontal=AngularServo(param_servo_tracker_horizontal['pin'], min_angle=param_servo_tracker_horizontal['min_angle'],max_angle=param_servo_tracker_horizontal['max_angle'],min_pulse_width=param_servo_tracker_horizontal['min_pulse_width'],max_pulse_width= param_servo_tracker_horizontal['max_pulse_width'])   #servo noir
+#     servo_vertical = AngularServo(param_servo_tracker_vertical['pin'], min_angle=param_servo_tracker_vertical['min_angle'],max_angle=param_servo_tracker_vertical['max_angle'],min_pulse_width=param_servo_tracker_vertical['min_pulse_width'],max_pulse_width=param_servo_tracker_vertical['max_pulse_width'])     #servo bleu
+#     trackerSolaire = tracker(servo_horizontal,servo_vertical)
+#     azimut,elevation = trackerSolaire.calculPositionWithDateAzimut('Printemps',12,30)
+#     trackerSolaire.goToPosition(azimut,elevation)
+
 
 ui.navigate.to(main_page, new_tab=False)
 
