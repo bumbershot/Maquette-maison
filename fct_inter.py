@@ -24,7 +24,11 @@ def validate_time(hour_input,minute_input,result,last_time_label):
             last_time_label.set_text(f"Heure précedente : {last_time}")
             last_time = f'{HH:02}:{MM:02}'
             result.set_text(f"Heure validée : {HH:02}:{MM:02}")
+            return True
         else:
             result.set_text("Erreur : heure ou minute invalide")
+            return False
     except ValueError: # Gestion des entrées non numériques
         result.set_text("Erreur : entrez uniquement des chiffres")
+        return False
+
